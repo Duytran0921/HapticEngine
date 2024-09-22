@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haptic Web Example</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    button, input[type="range"], input[type="checkbox"] {
+      margin: 20px;
+      padding: 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Haptic Interaction Example</h1>
+
+  <button id="hapticButton">Click me</button>
+  <br>
+  <input type="range" id="hapticSlider" min="0" max="100">
+  <br>
+  <label for="hapticToggle">Toggle Switch</label>
+  <input type="checkbox" id="hapticToggle">
+
+  <script>
+    function triggerHaptic() {
+      // Haptic feedback function for iOS
+      if (window.navigator.vibrate) {
+        window.navigator.vibrate(50); // 50ms vibration
+      } else {
+        console.log("Haptic feedback not supported.");
+      }
+    }
+
+    document.getElementById('hapticButton').addEventListener('click', () => {
+      triggerHaptic();
+    });
+
+    document.getElementById('hapticSlider').addEventListener('input', () => {
+      triggerHaptic();
+    });
+
+    document.getElementById('hapticToggle').addEventListener('change', () => {
+      triggerHaptic();
+    });
+  </script>
+</body>
+</html>
